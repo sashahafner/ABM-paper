@@ -1,0 +1,243 @@
+---
+title: 'Short vs. long'
+output: pdf_document
+author: Sasha D. Hafner
+date: October 2020
+---
+
+
+```{r,echo=FALSE}
+options(width = 85)
+```
+
+```{r}
+library(ABM)
+```
+
+# Psychro and meso temps
+
+```{r}
+temp_dat <- data.frame(time = 2000 + c(-1, 0, 100), 
+                       temp_C =     c(20, 37, 20)) 
+plot(temp_C ~ time, data = temp_dat, type = 's')
+```
+
+```{r}
+grp_pars1 <- list(grps = c('m1', 'm3', 'p1', 'p2', 'sr1'),
+                  yield = c(default = 0.04, sr1 = 0.065),
+                  xa_fresh = c(default = 0.001, sr1 = 0.001),
+                  xa_init = c(m1 = 0.01, m3 = 0.01, p1 = 0.01, p2 = 0.01, sr1 = 0.01),
+                  decay_rate = c(m1 = 0.02, m3 = 0.02, p1 = 0.02, p2 = 0.02, sr1 = 0.02),
+                  ks_coefficient = c(m1 = 0.5, m3 = 1.0, p1 = 1.0, p2 = 1.0, sr1 = 0.4),
+                  resid_enrich = c(m1 = 0.0, m3 = 0.0, p1 = 0.0, p2 = 0.0, sr1 = 0.0),
+                  qhat_opt = c(m1 = 8, m3 = 5.75, p1 = 2.77, p2 = 0.72, sr1 = 8.3),
+                  T_opt = c(m1 = 313, m3 = 303, p1 = 293, p2 = 283, sr1 = 313),
+                  T_min = c(m1 = 295.31, m3 = 285.31, p1 = 275.31, p2 = 265.31, sr1 = 273),
+                  T_max = c(m1 = 320.67, m3 = 310.67, p1 = 300.67, p2 = 290.67, sr1 = 320.67),
+                  ki_NH3_min = c(m1 = 0.01, m3 = 0.015, p1 = 0.015, p2 = 0.015, sr1 = 0.015),
+                  ki_NH3_max = c(m1 = 0.10, m3 = 0.131, p1 = 0.131, p2 = 0.131, sr1 = 0.131),
+                  ki_NH4_min = c(m1 = 1.70, m3 = 2.714, p1 = 2.714, p2 = 2.714, sr1 = 2.714),
+                  ki_NH4_max = c(m1 = 3.10, m3 = 4.764, p1 = 4.764, p2 = 4.764, sr1 = 4.764),
+                  pH_upr = c(m1 = 8.0, m3 = 8.0, p1 = 8.0, p2 = 8.0, sr1 = 8.0),
+                  pH_lwr = c(m1 = 6.5, m3 = 6.5, p1 = 6.5, p2 = 6.5, sr1 = 6.0))
+```
+
+Single group
+
+```{r}
+grp_pars2 <- list(grps = c('m1', 'sr1'),
+                  yield = c(default = 0.04, sr1 = 0.065),
+                  xa_fresh = c(default = 0.001, sr1 = 0.001),
+                  xa_init = c(m1 = 0.01, sr1 = 0.01),
+                  decay_rate = c(m1 = 0.02, sr1 = 0.02),
+                  ks_coefficient = c(m1 = 1.0, sr1 = 0.4),
+                  resid_enrich = c(m1 = 0.0, sr1 = 0.0),
+                  qhat_opt = c(m1 = 5.75, sr1 = 8.3),
+                  T_opt = c(m1 = 310, sr1 = 313),
+                  T_min = c(m1 = 292, sr1 = 273),
+                  T_max = c(m1 = 317, sr1 = 320.67),
+                  ki_NH3_min = c(m1 = 0.015, sr1 = 0.015),
+                  ki_NH3_max = c(m1 = 0.131, sr1 = 0.131),
+                  ki_NH4_min = c(m1 = 2.714, sr1 = 2.714),
+                  ki_NH4_max = c(m1 = 4.764, sr1 = 4.764),
+                  pH_upr = c(m1 = 8.0, sr1 = 8.0),
+                  pH_lwr = c(m1 = 6.5, sr1 = 6.0))
+```
+
+Single but broad group
+
+```{r}
+grp_pars3 <- list(grps = c('m1', 'sr1'),
+                  yield = c(default = 0.04, sr1 = 0.065),
+                  xa_fresh = c(default = 0.001, sr1 = 0.001),
+                  xa_init = c(m1 = 0.01, sr1 = 0.01),
+                  decay_rate = c(m1 = 0.02, sr1 = 0.02),
+                  ks_coefficient = c(m1 = 1.0, sr1 = 0.4),
+                  resid_enrich = c(m1 = 0.0, sr1 = 0.0),
+                  qhat_opt = c(m1 = 5.75, sr1 = 8.3),
+                  T_opt = c(m1 = 310, sr1 = 313),
+                  T_min = c(m1 = 265, sr1 = 273),
+                  T_max = c(m1 = 321, sr1 = 320.67),
+                  ki_NH3_min = c(m1 = 0.015, sr1 = 0.015),
+                  ki_NH3_max = c(m1 = 0.131, sr1 = 0.131),
+                  ki_NH4_min = c(m1 = 2.714, sr1 = 2.714),
+                  ki_NH4_max = c(m1 = 4.764, sr1 = 4.764),
+                  pH_upr = c(m1 = 8.0, sr1 = 8.0),
+                  pH_lwr = c(m1 = 6.5, sr1 = 6.0))
+```
+
+
+```{r}
+out1 <- abm(3000, 1, 
+            grp_pars = grp_pars1,
+            add_pars = list(temp_C = temp_dat, resid_frac = 0.95, 
+                            max_slurry_mass = 1,
+                            slurry_mass = 0.95 * 1, slurry_prod_rate = 1/15,
+                            conc_fresh.Sp = 50, conc_fresh.COD = 60, conc_fresh.VFA = 4,
+                            area = 0),
+            approx_method_temp = 'constant')
+
+```
+
+```{r}
+plot(temp_C ~ time, type = 'l', col = 'red', data = out1)
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+
+matplot(out1$time, out1[, nn <- c('m1_conc', 'm3_conc', 'p1_conc', 'p2_conc')], 
+        type = 'l', lty = 1, xlab = 'Time (d)', ylab = 'Biomass conc. (g/kg)',
+        xlim = c(1900, 2300))
+legend('topleft', nn, col = 1:5, lty = 1)
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+
+plot(CH4_emis_rate_VS ~ time, data = out1, type = 'l', xlim = c(1900, 2200))
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+
+plot(VFA_conc ~ time, type = 'l', col = 'purple', data = out1)
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+```
+
+Now single mesophilic group
+
+```{r}
+out2 <- abm(3000, 1, 
+            grp_pars = grp_pars2,
+            add_pars = list(temp_C = temp_dat, resid_frac = 0.95, 
+                            max_slurry_mass = 1,
+                            slurry_mass = 0.95 * 1, slurry_prod_rate = 1/15,
+                            conc_fresh.Sp = 50, conc_fresh.COD = 60, conc_fresh.VFA = 4,
+                            area = 0),
+            approx_method_temp = 'constant')
+
+```
+
+One very broad group.
+
+
+```{r}
+out3 <- abm(3000, 1, 
+            grp_pars = grp_pars3,
+            add_pars = list(temp_C = temp_dat, resid_frac = 0.95, 
+                            max_slurry_mass = 1,
+                            slurry_mass = 0.95 * 1, slurry_prod_rate = 1/15,
+                            conc_fresh.Sp = 50, conc_fresh.COD = 60, conc_fresh.VFA = 4,
+                            area = 0),
+            approx_method_temp = 'constant')
+
+```
+
+```{r}
+plot(CH4_emis_rate_VS ~ time, data = out1, type = 'l')
+lines(CH4_emis_rate_VS ~ time, data = out2, type = 'l', col = 'red')
+lines(CH4_emis_rate_VS ~ time, data = out3, type = 'l', col = 'blue')
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+```
+
+
+```{r}
+plot(CH4_emis_rate_VS ~ time, data = out1, type = 'l', xlim = c(1900, 2200))
+lines(CH4_emis_rate_VS ~ time, data = out2, type = 'l', col = 'red')
+lines(CH4_emis_rate_VS ~ time, data = out3, type = 'l', col = 'blue')
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+```
+
+```{r}
+plot(CH4_emis_rate_VS ~ time, data = out1, type = 'l')
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+```
+
+```{r}
+plot(CH4_emis_rate_VS ~ time, data = out1, type = 'l', xlim = c(1900, 2200))
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+```
+
+# Different simulation
+
+From Soren:
+
+1. Temperature at e.g. 50 degrees during, say, 40 days to simulate AD.
+1. Transfer to e.g. 20 degrees (immediate change can be explained by heat exchange) for another 40 days.
+1. Population 1 with a temperature optimum at 52? degrees, and distribution  corresponding to Fig. 1c.
+1. Population 2 and 3 with temperature profiles that correspond to pig and cattle slurry (1a and 1b).
+1. Methane production rates of each population at 20 and 50 degrees are defined in Fig. 1
+
+So. . .
+Three groups
+
+```{r}
+grp_pars4 <- list(
+                  grps = c('m1', 'm2', 'sr1'),
+                  yield = c(default = 0.04, sr1 = 0.065),
+                  xa_fresh = c(all = 0.001),
+                  xa_init = c(all = 0.01),
+                  decay_rate = c(all = 0.02),
+                  ks_coefficient = c(default = 1.0, sr1 = 0.4),
+                  resid_enrich = c(all = 0),
+                  qhat_opt = c(all = 8),
+                  T_opt = 273.15 + c(m1 = 35, m2 = 52, sr1 = 40),
+                  T_min = 273.15 + c(m1 = 5, m2 = 20, sr1 = 0),
+                  T_max = 273.15 + c(m1 = 50, m2 = 65, sr1 = 55),
+                  ki_NH3_min = c(all = 0.01),
+                  ki_NH3_max = c(all = 0.10),
+                  ki_NH4_min = c(all = 2),
+                  ki_NH4_max = c(all = 3),
+                  pH_upr = c(all = 8),
+                  pH_lwr = c(all = 6.5))
+```
+
+
+```{r}
+temp_dat <- data.frame(time = 200 + c(-1, 0, 200), 
+                       temp_C =     c(52, 20, 37)) 
+```
+
+Hydrolysis optimum is increased to 52C.
+
+```{r}
+out4 <- abm(500, 1, 
+            grp_pars = grp_pars4,
+            add_pars = list(temp_C = temp_dat, resid_frac = 0.95, 
+                            max_slurry_mass = 1,
+                            slurry_mass = 0.95 * 1, slurry_prod_rate = 1/15,
+                            conc_fresh.Sp = 50, conc_fresh.COD = 60, conc_fresh.VFA = 4,
+                            area = 0, alpha_T_max = 328, alpha_T_opt = 323, alpha_opt = 0.02),
+            approx_method_temp = 'constant')
+
+```
+
+```{r}
+plot(temp_C ~ time, type = 'l', col = 'red', data = out4)
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+
+matplot(out4$time, out4[, nn <- c('m1_conc', 'm2_conc')], 
+        type = 'l', lty = 1, xlab = 'Time (d)', ylab = 'Biomass conc. (g/kg)')
+legend('topleft', nn, col = 1:3, lty = 1)
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+
+plot(CH4_emis_rate_VS ~ time, data = out4, type = 'l')
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+
+plot(VFA_conc ~ time, type = 'l', col = 'purple', data = out4)
+abline(v = temp_dat$time, lty = 2, col = 'gray45')
+```
+
+
