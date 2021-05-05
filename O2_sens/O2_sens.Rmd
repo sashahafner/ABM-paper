@@ -1,0 +1,85 @@
+---
+title: "Oxygen mass transfer sensitivity in ABM"
+author: "Sasha D. Hafner"
+date: "`r Sys.Date()`"
+fig_width: 6 
+fig_height: 4 
+output: pdf_document
+---
+
+```{r,echo=FALSE}
+knitr::opts_chunk$set(fig.width=6, fig.height=4)
+options(width = 85)
+```
+
+```{r,eval= TRUE}
+library(ABM)
+```
+
+Default simulation
+
+```{r}
+out1 <- abm()
+```
+Total cumulative emission (g) and emission rate (g/d) are plotted below.
+
+Completely shut off respiration, and also increase mass transfer coefficient by a factor of 10.
+
+```{r}
+out2 <- abm(add_pars = list(kl.oxygen = 0))
+```
+
+```{r}
+out3 <- abm(add_pars = list(kl.oxygen = 5))
+```
+
+```{r}
+plot(CH4_emis_rate ~ time, data = out1, type = 'l', ylab = 'Cumulative emission (g)', lwd = 2)
+lines(CH4_emis_rate ~ time, data = out2, col = 'red', lty = 2)
+lines(CH4_emis_rate ~ time, data = out3, col = 'orange', lty = 3)
+```
+
+```{r}
+plot(CO2_emis_rate ~ time, data = out1, type = 'l', ylab = 'Cumulative emission (g)', lwd = 2)
+lines(CO2_emis_rate ~ time, data = out2, col = 'red', lty = 2)
+lines(CO2_emis_rate ~ time, data = out3, col = 'orange', lty = 3)
+```
+
+Conclude that respiration is minor sink for substrate, and uncertainty is not important.
+Compare CH4/respiration COD consumption:
+
+```{r}
+plot(f_COD_CH4_cum ~ time, data = out3, type = 'l', col = 'gray45', lty = 2, ylab = 'Cumulative emission (g)', lwd = 2)
+lines(f_COD_respir_cum ~ time, data = out1, lwd = 1)
+```
+
+```{r}
+tail(out3[, c(1, which(grepl('^f_COD', names(out3))))])
+```
+
+Try increasing k_L 10x and decreasing the maximum depth.
+To do that we will increase surface area from 11 m2 to 333 m2, for a maximum depth of 1 cm.
+
+```{r}
+out4 <- abm(add_pars = list(kl.oxygen = 5, area = 333))
+```
+
+```{r}
+tail(out4[, c(1, which(grepl('^f_COD', names(out4))))])
+```
+
+Now respiration becomes more important.
+
+```{r}
+plot(CH4_emis_rate ~ time, data = out1, type = 'l', ylab = 'Cumulative emission (g)', lwd = 2)
+lines(CH4_emis_rate ~ time, data = out4, col = 'orange', lty = 3)
+```
+
+```{r}
+plot(CO2_emis_rate ~ time, data = out4, type = 'l', ylab = 'Cumulative emission (g)', col = 'blue')
+lines(CO2_emis_rate ~ time, data = out1)
+```
+
+But even so, for default conditions CH4 emission is not affected.
+
+
