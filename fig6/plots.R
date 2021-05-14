@@ -42,7 +42,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
   matplot(out1$time_new, out1[, c('CH4_emis_rate_VS')], type = 'l', 
           col = c('blue'), lty = 2, xlim = c(0,730),
           xlab = 'Time (d)',
-          ylab = expression(CH[4]~'emission'~(g['CH4']~g['VS loaded']^'-1'))) 
+          ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1'))) 
   lines(out3$time_new, out3$CH4_emis_rate_VS, col="blue", lty = 1)
   legend(0, 0.075, legend=c('Temperature', 
                             expression('CH'[4]*', f'['resid']~'= 0.95'), 
@@ -64,7 +64,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
   matplot(out2$time_new, out2[, c('CH4_emis_rate_VS')], type = 'l', 
           col = c('blue'), lty = 1, xlim = c(0,2000),
           xlab = 'Time (d)',
-          ylab = expression(CH[4]~'emission'~(g['CH4']~g['VS loaded']^'-1'))) 
+          ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1'))) 
   legend(310, 0.22, legend=c('Temperature', expression('CH'[4]), 'VFA'),
          col=c('black','blue', 'red'), lty=c(2,1,1), cex=0.6, box.lty=0, bg = 'transparent')
   par(new = TRUE)
