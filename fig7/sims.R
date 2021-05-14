@@ -17,16 +17,16 @@ grp_pars = list(grps = c('m1', 'm2', 'm3', 'm4', 'm5','sr1'),
                 pH_upr = c(all = 8.0),
                 pH_lwr = c(default = 6.5, sr1 = 5.5))
 
-pH_dat1 <- data.frame(time =   c(0, 730, 744, 1109, 1123, 1460),
+pH_dat1 <- data.frame(time =   c(0, 730, 744, 1109, 1123, 1460) + 1000,
                       pH = c(7,    7,  5,  5,  7,    7)) 
-SO4_dat <- data.frame(time = c(0, 730, 744, 1109, 1123, 1460), SO4 = c(0.2, 0.2, 5.5, 5.5, 0.2, 0.2))
+SO4_dat <- data.frame(time = c(0, 730, 744, 1109, 1123, 1460) + 1000, SO4 = c(0.2, 0.2, 5.5, 5.5, 0.2, 0.2))
 
-out1 <- abm(1800,1, add_pars = list(pH = pH_dat1, resid_frac = 0.95), approx_method_pH = 'linear')
-out2 <- abm(1800,1, grp_pars = grp_pars, add_pars = list(resid_frac = 0.95), man_pars = list(conc_fresh = list(S2 = 0.0, SO4 = SO4_dat, TAN = 1.0, VFA = 4.2, Sp = 65, COD = 160), pH = pH_dat1), approx_method_pH = 'linear')
+out1 <- abm(1800 + 1000,1, add_pars = list(pH = pH_dat1, resid_frac = 0.95), approx_method_pH = 'linear')
+out2 <- abm(1800 + 1000,1, grp_pars = grp_pars, add_pars = list(resid_frac = 0.95), man_pars = list(conc_fresh = list(S2 = 0.0, SO4 = SO4_dat, TAN = 1.0, VFA = 4.2, Sp = 65, COD = 160), pH = pH_dat1), approx_method_pH = 'linear')
 
-out1$time_new <- out1$time-600
+out1$time_new <- out1$time - 1600
 out1$sulfate_conc <- out1$sulfate/out1$slurry_mass
-out2$time_new <- out2$time-600
+out2$time_new <- out2$time - 1600
 out2$sulfate_conc <- out2$sulfate/out2$slurry_mass
 
 
