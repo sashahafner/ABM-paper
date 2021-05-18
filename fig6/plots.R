@@ -12,10 +12,10 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
   lines(out3$time_new, out3$m1/1000, col="blue", lty = 1)
   lines(out3$time_new, out3$m2/1000, col="orange", lty = 1)
   legend(350, 10, legend = c('Temperature',
-                            expression('m1, f'['resid']~'= 0.95'), 
-                            expression('m2, f'['resid']~'= 0.95'), 
-                            expression('m1, f'['resid']~'= 0.10'), 
-                            expression('m2, f'['resid']~'= 0.10')),
+                            expression('m1,'~italic('f'['resid'])~'= 0.95'), 
+                            expression('m2,'~italic('f'['resid'])~'= 0.95'), 
+                            expression('m1,'~italic('f'['resid'])~'= 0.10'), 
+                            expression('m2,'~italic('f'['resid'])~'= 0.10')),
          col=c('black','blue', 'red', 'blue','red'), lty=c(2,3,3,1,1), box.lty=0, bg = 'transparent', cex = 0.6)
   par(new = TRUE)
   plot(temp_C ~ time_new, lty = 2, col = 'black', data = out1, type = 'l',
@@ -45,10 +45,10 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1'))) 
   lines(out3$time_new, out3$CH4_emis_rate_VS, col="blue", lty = 1)
   legend(0, 0.075, legend=c('Temperature', 
-                            expression('CH'[4]*', f'['resid']~'= 0.95'), 
-                            expression('CH'[4]*', f'['resid']~'= 0.10'),
-                            expression('VFA,'~f['resid']~'= 0.95'), 
-                            expression('VFA,'~f['resid']~'= 0.10')),
+                            expression('CH'[4]*','~italic('f'['resid'])~'= 0.95'), 
+                            expression('CH'[4]*','~italic('f'['resid'])~'= 0.10'),
+                            expression('VFA,'~italic(f['resid'])~'= 0.95'), 
+                            expression('VFA,'~italic(f['resid'])~'= 0.10')),
          col=c('black','blue', 'blue', 'red', 'red'), lty=c(2,2,1,2,1), cex=0.6, box.lty=0, bg = 'transparent')
   par(new = TRUE)
   plot(temp_C ~ time_new, lty = 2, col = 'black', data = out1, type = 'l',

@@ -6,7 +6,7 @@ tiff('../fig_output/Fig3.tiff', width = 6, height = 3.2, pointsize = 9, units = 
   
   plot(T_elsgaard,CH4_elsgaard, type = 'p', 
        col = c('black'), lty = 1, 
-       ylab = expression('Specific'~CH[4]~'production'~(g~CH[4]~kg[VS]^'-1')), xlab = expression('Temperature'~ (deg*C)), ylim = c(0, 0.11))
+       ylab = expression('Specific'~CH[4]~'production'~(g~CH[4]~kg[VS]^'-1')), xlab = expression('Temperature'~ (degree*C)), ylim = c(0, 0.11))
   lines(Temp_int, CH4_5, col = c('red'), lty = 1)
   lines(Temp_int, CH4_3, col = c('orange'), lty = 1)
   lines(Temp_int, CH4_5_m1, col = c('blue'), lty = 2)
