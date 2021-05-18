@@ -3,6 +3,7 @@
 tiff('../fig_output/Fig3.tiff', width = 6, height = 3.2, pointsize = 9, units = 'in', res = 600)
   par(mfrow=c(1,2))
   par(mar=c(4,5,4,2))
+  par(cex.axis=0.8, cex.lab=0.8, cex.main=0.8, cex.sub=0.8, mgp = c(1.6, 0.7, 0))
   
   plot(T_elsgaard,CH4_elsgaard, type = 'p', 
        col = c('black'), lty = 1, 
@@ -34,8 +35,8 @@ tiff('../fig_output/Fig3.tiff', width = 6, height = 3.2, pointsize = 9, units = 
   lines(CH4_emis_rate_VS + 0.01 ~ time, data = out3, col = 'blue')
   abline(v = temp_dat$time, lty = 2, col = 'gray45')
   legend('topright', legend = c('m1 + m3 + m5', 'm3', 'm3 wide temp.'), lty = 1, col = c('black', 'red', 'blue'), cex = 0.5, bty = 'n')
-  mtext(expression(37*degree*C*'                 '*52*degree*C*'            '*18*degree*C*'         '),
-        3, cex = 0.9)
+  mtext(expression(37~degree*C*'                 '*52~degree*C*'            '*18~degree*C*'         '),
+        3, cex = 0.8)
   mtext('b', 3, line = 1)
   
 dev.off()

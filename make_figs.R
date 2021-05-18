@@ -25,3 +25,4 @@ setwd('../fig9')
 source('main.R')
 
 setwd('..')
+getwd()

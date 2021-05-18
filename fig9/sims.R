@@ -44,7 +44,7 @@ mng_pars <- list(slurry_prod_rate = 0,
                  resid_frac = 0,
                  area = 730)
 
-out2 <- abm(3650, 1, add_pars = list(alpha_opt = 0.01, 
+out2 <- abm(3650, 1, add_pars = list(alpha_opt = 0.007, ############## 0.01 
                                      qhat_opt = c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
                                      conc_fresh = c(S2 = 0.0, SO4 = 0.2, TAN = 1.091, Sp = 41, VFA = 1.4), 
                                      pH = 7.3, 
@@ -60,23 +60,28 @@ out3 <- abm(3650, 1, add_pars = list(alpha_opt = 0.015,
                                      max_slurry_mass = 0, resid_frac = 0,
                                      area = 730))
 
-out4 <- abm(3650, 1, add_pars = list(alpha_opt = 0.02, qhat_opt = c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
+out4 <- abm(3650, 1, add_pars = list(alpha_opt = 0.03, qhat_opt = c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
                                      conc_fresh = c(S2 = 0.0, SO4 = 0.2, TAN = 1.091, Sp = 41, VFA = 1.4), 
                                      pH = 7.3, 
                                      temp_C = temp_dat, area = 730, slurry_prod_rate = 0, slurry_mass = slurry_mass_dat, 
                                      max_slurry_mass = 0, resid_frac = 0,
                                      area = 730))
-out5 <- abm(3650, 1, add_pars = list(alpha_opt = 0.015, qhat_opt = 0.5*c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
+
+                                     #yield = c(all = 0.01),
+out5 <- abm(3650, 1, add_pars = list(alpha_opt = 0.015, 
+                                     qhat_opt = 0.4 * c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
                                      conc_fresh = c(S2 = 0.0, SO4 = 0.2, TAN = 1.091, Sp = 41, VFA = 1.4), pH = 7.3, 
                                      temp_C = temp_dat, area = 730, slurry_prod_rate = 0, slurry_mass = slurry_mass_dat, 
                                      max_slurry_mass = 0, resid_frac = 0, area = 730))
 
-out6 <- abm(3650, 1, add_pars = list(alpha_opt = 0.015, qhat_opt = 0.75*c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
-                                      conc_fresh = c(S2 = 0.0, SO4 = 0.2, TAN = 1.091, Sp = 41, VFA = 1.4), 
-                                      pH = 7.3, temp_C = temp_dat, area = 730, slurry_prod_rate = 0, slurry_mass = slurry_mass_dat, 
+out6 <- abm(3650, 1, add_pars = list(alpha_opt = 0.015, 
+                                     qhat_opt = c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
+                                     conc_fresh = c(S2 = 0.0, SO4 = 0.2, TAN = 1.091, Sp = 41, VFA = 1.4), 
+                                     pH = 7.3, temp_C = temp_dat, area = 730, slurry_prod_rate = 0, slurry_mass = slurry_mass_dat, 
                                       max_slurry_mass = 0, resid_frac = 0, area = 730))
 
-out7 <- abm(3650, 1, add_pars = list(alpha_opt = 0.015, qhat_opt = c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
+out7 <- abm(3650, 1, add_pars = list(alpha_opt = 0.015, 
+                                     qhat_opt = 1.5 * c(m1 = 3.6, m2 = 5.6 , m3 = 7.2, m4 = 8, m5 = 8),
                                      conc_fresh = c(S2 = 0.0, SO4 = 0.2, TAN = 1.091, Sp = 41, VFA = 1.4), pH = 7.3, 
                                      temp_C = temp_dat, area = 730, slurry_prod_rate = 0, slurry_mass = slurry_mass_dat, 
                                      max_slurry_mass = 0, resid_frac = 0,

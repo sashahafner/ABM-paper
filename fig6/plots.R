@@ -2,7 +2,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
 
   par(mfrow=c(2, 2))
   par(mar=c(4, 4, 4, 4))
-  par(cex.axis=0.7, cex.lab=0.7, cex.main=0.7, cex.sub=0.7, mgp = c(1.4, 0.6, 0))
+  par(cex.axis=0.8, cex.lab=0.8, cex.main=0.8, cex.sub=0.8, mgp = c(1.6, 0.7, 0))
   
   # part a
   matplot(out1$time_new, out1[, c('m1','m2')]/1000, type = 'l', 
@@ -11,7 +11,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           ylab = expression('Methanogen biomass'~(kg['COD-B']))) 
   lines(out3$time_new, out3$m1/1000, col="blue", lty = 1)
   lines(out3$time_new, out3$m2/1000, col="orange", lty = 1)
-  legend(350, 10, legend = c('Temperature',
+  legend('topleft', legend = c('Temperature',
                             expression('m1,'~italic('f'['resid'])~'= 0.95'), 
                             expression('m2,'~italic('f'['resid'])~'= 0.95'), 
                             expression('m1,'~italic('f'['resid'])~'= 0.10'), 
@@ -44,7 +44,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           xlab = 'Time (d)',
           ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1'))) 
   lines(out3$time_new, out3$CH4_emis_rate_VS, col="blue", lty = 1)
-  legend(0, 0.075, legend=c('Temperature', 
+  legend(0, 0.085, legend=c('Temperature', 
                             expression('CH'[4]*','~italic('f'['resid'])~'= 0.95'), 
                             expression('CH'[4]*','~italic('f'['resid'])~'= 0.10'),
                             expression('VFA,'~italic(f['resid'])~'= 0.95'), 
@@ -65,7 +65,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           col = c('blue'), lty = 1, xlim = c(0,2000),
           xlab = 'Time (d)',
           ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1'))) 
-  legend(310, 0.22, legend=c('Temperature', expression('CH'[4]), 'VFA'),
+  legend(320, 0.15, legend=c('Temperature', expression('CH'[4]), 'VFA'),
          col=c('black','blue', 'red'), lty=c(2,1,1), cex=0.6, box.lty=0, bg = 'transparent')
   par(new = TRUE)
   plot(temp_C ~ time_new, lty = 2, col = 'black', data = out2, type = 'l',

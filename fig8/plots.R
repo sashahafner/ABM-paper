@@ -2,7 +2,7 @@ tiff('../fig_output/Fig8.tiff', width = 6, height = 3, pointsize = 9, units = 'i
 
   par(mfrow=c(1, 2))
   par(mar=c(4, 4, 4, 4))
-  par(cex.axis=0.7, cex.lab=0.7, cex.main=0.7, cex.sub=0.7, mgp = c(1.4, 0.6, 0))
+  par(cex.axis=0.8, cex.lab=0.8, cex.main=0.8, cex.sub=0.8, mgp = c(1.6, 0.7, 0))
   
   plot(x_vector,alpha_opt_vector, type="l", lty =1, col = 'red', 
        xlab = 'Parameter change (%)',

@@ -2,7 +2,7 @@ tiff('../fig_output/Fig7.tiff', width = 6, height = 3, pointsize = 9, units = 'i
 
   par(mfrow=c(1, 2))
   par(mar=c(4, 4, 4, 4))
-  par(cex.axis=0.7, cex.lab=0.7, cex.main=0.7, cex.sub=0.7, mgp = c(1.4, 0.6, 0))
+  par(cex.axis=0.8, cex.lab=0.8, cex.main=0.8, cex.sub=0.8, mgp = c(1.6, 0.7, 0))
   
   # part a
   matplot(out1$time_new, out1[, c('m2','m3')]/1000, type = 'l', 
