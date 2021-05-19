@@ -13,7 +13,7 @@ tiff('../fig_output/Fig8.tiff', width = 6, height = 3, pointsize = 9, units = 'i
   lines(x_vector, initial_vector, col = 'purple')
   lines(x_vector, ks_vector, col = 'black')
   legend('topleft', legend = c(expression(italic(alpha['opt'])), 
-                               expression(italic(q['max'])), 
+                               expression(italic(q['max, opt'])), 
                                expression(italic(Y['i'])), 
                                expression(italic(a['enrich'])), 
                                'Initial mic. biomass',

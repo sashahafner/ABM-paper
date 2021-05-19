@@ -11,12 +11,12 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           ylab = expression('Methanogen biomass'~(kg['COD-B']))) 
   lines(out3$time_new, out3$m1/1000, col="blue", lty = 1)
   lines(out3$time_new, out3$m2/1000, col="orange", lty = 1)
-  legend('topleft', legend = c('Temperature',
+  legend(20, 14, legend = c('Temperature',
                             expression('m1,'~italic('f'['resid'])~'= 0.95'), 
                             expression('m2,'~italic('f'['resid'])~'= 0.95'), 
                             expression('m1,'~italic('f'['resid'])~'= 0.10'), 
                             expression('m2,'~italic('f'['resid'])~'= 0.10')),
-         col=c('black','blue', 'red', 'blue','red'), lty=c(2,3,3,1,1), box.lty=0, bg = 'transparent', cex = 0.6)
+         col=c('black','blue', 'orange', 'blue','orange'), lty=c(2,3,3,1,1), box.lty=0, bg = 'transparent', cex = 0.6)
   par(new = TRUE)
   plot(temp_C ~ time_new, lty = 2, col = 'black', data = out1, type = 'l',
        axes = FALSE, xlab = '', ylab = '',xlim = c(0,730))
@@ -29,8 +29,8 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           col = c('blue', 'orange','palegreen4','purple','red'), lty = 1, xlim = c(0,2000),
           xlab = 'Time (d)',
           ylab = expression('Methanogen biomass'~(kg['COD-B']))) 
-  legend(360, 22, legend=c('Temperature','m1','m2','m3','m4','m5'),
-         col=c('black','blue', 'orange','palegreen4','purple','red'), lty=c(2,1,1,1,1,1), cex=0.7, box.lty=0, bg = 'transparent')
+  legend(360, 27, legend=c('Temperature','m1','m2','m3','m4','m5'),
+         col=c('black','blue', 'orange','palegreen4','purple','red'), lty=c(2,1,1,1,1,1), cex=0.6, box.lty=0, bg = 'transparent')
   par(new = TRUE)
   plot(temp_C ~ time_new, lty = 2, col = 'black', data = out2, type = 'l',
        axes = FALSE, xlab = '', ylab = '',xlim = c(1, 2000))
@@ -44,7 +44,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           xlab = 'Time (d)',
           ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1'))) 
   lines(out3$time_new, out3$CH4_emis_rate_VS, col="blue", lty = 1)
-  legend(0, 0.085, legend=c('Temperature', 
+  legend(0, 0.088, legend=c('Temperature', 
                             expression('CH'[4]*','~italic('f'['resid'])~'= 0.95'), 
                             expression('CH'[4]*','~italic('f'['resid'])~'= 0.10'),
                             expression('VFA,'~italic(f['resid'])~'= 0.95'), 
@@ -65,7 +65,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
           col = c('blue'), lty = 1, xlim = c(0,2000),
           xlab = 'Time (d)',
           ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1'))) 
-  legend(320, 0.15, legend=c('Temperature', expression('CH'[4]), 'VFA'),
+  legend(320, 0.20, legend=c('Temperature', expression('CH'[4]), 'VFA'),
          col=c('black','blue', 'red'), lty=c(2,1,1), cex=0.6, box.lty=0, bg = 'transparent')
   par(new = TRUE)
   plot(temp_C ~ time_new, lty = 2, col = 'black', data = out2, type = 'l',

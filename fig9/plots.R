@@ -27,11 +27,10 @@ tiff('../fig_output/Fig9.tiff', width = 6, height = 3, pointsize = 9, units = 'i
   lines(out6$time, out6$rCH4/1000, type = "l", col ='blue')
   lines(out7$time, out7$rCH4/1000, type = "l", col ='orange', lty = 3)
   legend('topleft', 
-         #legend=c("qhat,max,opt = 50% of default","qhat,max,opt = 75% of default" ,"qhat,max,opt = default","Kariyapperuma et al. 7018"), 
          legend = c(
-                    expression(italic(hat(q)['opt'])~'= 40% of default'),
-                    expression(italic(hat(q)['opt'])~'= default'),
-                    expression(italic(hat(q)['opt'])~'= 150% of default'),
+                    expression(italic(q['max, opt'])~'= 40% of default'),
+                    expression(italic(q['max, opt'])~'= default'),
+                    expression(italic(q['max, opt'])~'= 150% of default'),
                     expression("Kariyapperuma"~italic('et al.') ~"2018")), 
          col=c("red","blue","orange","gray45"), lty = c(1,1,3,NA), pch = c(NA,NA,NA,1), cex = 0.6, box.lty = 0, bg='transparent')  
   mtext('b', 3, line = 1)
