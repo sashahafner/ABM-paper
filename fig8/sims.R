@@ -110,18 +110,19 @@ p43<- (tail(out21$CH4_emis_cum, n=1)-tail(out16$CH4_emis_cum, n=1))/tail(out16$C
 
 Temperature_vector = c(p33,p34,p35,p36,p37,p38,p39,p40,p41,p42,p43)
 x_vector_temperature = c(-11.5, -9.2, -6.9, -4.6, -2.3, 0, 2.3, 4.6, 6.9, 9.2, 11.5)
+x_vector_temperature <- 100 * (c(5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35) - 20) / 293.15
 ## yield sensitivity
-out11 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.5*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out12 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.6*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out13 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.7*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out14 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.8*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out15 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.9*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out16 <- abm(730, 1, add_pars = list(temp_C = 20, yield = c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out17 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.1*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out18 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.2*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out19 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.3*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out20 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.4*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
-out21 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.5*c(m1 = 0.04, m2 = 0.04, m3 = 0.04, m4 = 0.04, m5 = 0.04)))
+out11 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.5*c(all = 0.05)))
+out12 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.6*c(all = 0.05)))
+out13 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.7*c(all = 0.05)))
+out14 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.8*c(all = 0.05)))
+out15 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.9*c(all = 0.05)))
+out16 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.0*c(all = 0.05)))
+out17 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.1*c(all = 0.05)))
+out18 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.2*c(all = 0.05)))
+out19 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.3*c(all = 0.05)))
+out20 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.4*c(all = 0.05)))
+out21 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 1.5*c(all = 0.05)))
 
 x_vector <- c(-50,-40,-30,-20,-10,0,10,20,30,40,50)
 
