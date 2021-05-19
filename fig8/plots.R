@@ -6,7 +6,7 @@ tiff('../fig_output/Fig8.tiff', width = 6, height = 3, pointsize = 9, units = 'i
   
   plot(x_vector,alpha_opt_vector, type="l", lty =1, col = 'red', 
        xlab = 'Parameter change (%)',
-       ylab = expression('Cumulative'~CH[4]~'change (%)')) 
+       ylab = expression('Change in cumulative'~CH[4]~'(%)')) 
   lines(x_vector, qhat_vector, col = 'palegreen4')
   lines(x_vector, yield_vector, col = 'blue')
   lines(x_vector, methanogen_enrich_vector, col = 'orange')
@@ -23,8 +23,8 @@ tiff('../fig_output/Fig8.tiff', width = 6, height = 3, pointsize = 9, units = 'i
   mtext('a', 3, line = 1)
 
   plot(x_vector_temperature,Temperature_vector, type="l", lty =1, col = 'red', 
-       xlab = 'Parameter change (%)',
-       ylab = expression('Cumulative'~CH[4]~'change (%)'), 
+       xlab = expression('Parameter change'~('% or'~degree*C)),
+       ylab = expression('Change in cumulative'~CH[4]~'(%)'), 
        xlim =c(-50,50))
   lines(x_vector,Sp_vector, col = 'palegreen4')
   lines(x_vector,residual_fraction_vector, col = 'blue')

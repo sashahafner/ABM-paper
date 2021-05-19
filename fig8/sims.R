@@ -109,8 +109,7 @@ p42<- (tail(out20$CH4_emis_cum, n=1)-tail(out16$CH4_emis_cum, n=1))/tail(out16$C
 p43<- (tail(out21$CH4_emis_cum, n=1)-tail(out16$CH4_emis_cum, n=1))/tail(out16$CH4_emis_cum, n=1)*100
 
 Temperature_vector = c(p33,p34,p35,p36,p37,p38,p39,p40,p41,p42,p43)
-x_vector_temperature = c(-11.5, -9.2, -6.9, -4.6, -2.3, 0, 2.3, 4.6, 6.9, 9.2, 11.5)
-x_vector_temperature <- 100 * (c(5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35) - 20) / 293.15
+x_vector_temperature <- c(5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35) - 20
 ## yield sensitivity
 out11 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.5*c(all = 0.05)))
 out12 <- abm(730, 1, add_pars = list(temp_C = 20, yield = 0.6*c(all = 0.05)))
