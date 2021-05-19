@@ -29,7 +29,7 @@ tiff('../fig_output/Fig7.tiff', width = 6, height = 3, pointsize = 9, units = 'i
           xlab = 'Time (d)',
           ylab = expression(CH[4]~'emission rate'~(g['CH4']~g['VS loaded']^'-1')), 
           col = c('blue'), lty = 1, xlim = c(0,1000), ylim = c(0,0.13))
-  legend(120, 0.12, legend=c("pH", expression(CH[4]~'emis.')),
+  legend(200, 0.12, legend=c("pH", expression(CH[4]~'emis.')),
          col=c("black","blue"), lty=c(2,1,1,1,1,1,1), cex=0.6, box.lty=0, bg = 'transparent')
   par(new = TRUE)
   plot(pH ~ time_new, lty = 2, col = 'black', data = out1, type = 'l',
