@@ -1,0 +1,140 @@
+---
+title: Calculation of conversion factors for model parameters
+author: Sasha D. Hafner
+output: pdf_document
+classoption: landscape
+date: May 2021
+---
+
+```{r}
+library(biogas)
+```
+
+Last run:
+
+```{r}
+Sys.time()
+```
+
+
+# Note on inputs
+Chemical formulas from biogas package.
+Document values of macromolecular composition.
+These match the SoftwareX paper.
+
+```{r}
+biogas:::std.forms
+```
+
+Composition of manure based on macromolecular groups from Appendix S3 in the paper, as g/g VS.
+
+
+# 1. COD:VS ratios
+## A. Pig, degradable, no VFA
+
+```{r}
+pred <- predBg(mcomp = c(protein = 0.18, lipid = 0.12, carbohydrate = 0.39), 
+               mass = 1, value = 'all')
+pred
+1/pred$COD
+```
+
+## C. Cattle, degradable, no VFA
+
+```{r}
+pred <- predBg(mcomp = c(protein = 0.15, lipid = 0.07, carbohydrate = 0.43), 
+               mass = 1, value = 'all')
+pred
+1/pred$COD
+```
+
+# 2. Chemical formulas and CO2:COD ratios
+These all use degradable VS plus VFA to give CO2 mass produced per g COD converted.
+We need to reduce CO2 (and any other "energy reaction" products) by the fraction of substrate used for microbial biomass synthesis.
+This is a bit sketchy because this biomass contributes to slurry OM (VS and COD).
+But we only explicitly include it in the model for methanogens. 
+So for the others (fermentation, aerobic, sulfate reduction?) we should include an effective fraction that represents slowly degradable or nondegradable biomass.
+
+Yields in g COD/g COD.
+Below I took about 20% off the yields from Table 3.1 in Rittmann and McCarty.
+
+```{r}
+yaer <- 0.1
+yanaer <- 0.03
+ysr <- 0.01
+```
+
+## A. Pig, degradable, with VFA
+
+```{r}
+pred <- predBg(mcomp = c(acetic = 0.08, protein = 0.18, lipid = 0.12, carbohydrate = 0.39), 
+               mass = 1, value = 'all')
+pred
+1/pred$COD
+```
+
+Round for the following formula for degradable pig slurry organic matter (OM).
+
+```{r}
+fpd <- 'C16 H27 O8.7 N'
+```
+Anaerobic CO2.
+
+```{r}
+predBg(fpd, fs = yanaer, value = 'reactionc')
+pred <- predBg(fpd, fs = 0.10, value = 'all')
+pred
+pred$mCO2 / pred$COD
+```
+
+So we have 0.49 CO2 per g COD.
+
+Aerobic CO2.
+Here we need the mass of CO2 assuming all C goes to CO2, per g COD.
+
+```{r}
+(1 - yaer) * molMass('CO2') * 16 / (calcCOD(fpd) * molMass(fpd))
+```
+
+Sulfate reduction:
+
+```{r}
+(1 - ysr) * molMass('CO2') * 16 / (calcCOD(fpd) * molMass(fpd))
+```
+
+## B. Cattle, degradable, with VFA
+
+```{r}
+pred <- predBg(mcomp = c(acetic = 0.04, protein = 0.15, lipid = 0.07, carbohydrate = 0.43), 
+               mass = 1, value = 'all')
+pred
+1/pred$COD
+```
+
+Round for the following formula for degradable pig slurry organic matter (OM).
+
+```{r}
+fcd <- 'C16.6 H27.9 O10 N'
+```
+Anaerobic CO2.
+
+```{r}
+predBg(fcd, fs = yanaer, value = 'reactionc')
+pred <- predBg(fcd, fs = yanaer, value = 'all')
+pred
+pred$mCO2 / pred$COD
+```
+
+0.57 g CO2 per g COD.
+
+Aerobic CO2:
+
+```{r}
+(1 - yaer) * molMass('CO2') * 16.6 / (calcCOD(fcd) * molMass(fcd))
+```
+
+```{r}
+(1 - ysr) * molMass('CO2') * 16.6 / (calcCOD(fcd) * molMass(fcd))
+```
+
+
