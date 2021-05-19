@@ -26,8 +26,9 @@ tiff('../fig_output/Fig4.tiff', width = 6, height = 3.2, pointsize = 9, units = 
           col = c('blue', 'orange', 'palegreen4', 'purple', 'red', 'gray45'), lty = c(1, 2, 1, 2, 1, 1), 
           xlab = expression('Temperature'~(degree*C)), 
           ylab = expression('Methanogen biomass'~(kg['COD-B']))) 
-  legend('topleft', legend=c('Methanogen biomass'),
-         col=c('gray45'), lty=1, cex=0.6, box.lty=0, bg = 'transparent')
+  legend('topleft', legend=c('Methanogen biomass', 'm1','m2','m3','m4','m5'),
+         col=c('gray45', 'blue','orange','palegreen4','purple','red'), 
+         lty=c(1, 1,2,1,2,1), cex=0.6, box.lty=0, bg = 'transparent')
   mtext('b', 3, line = 1)
 
 dev.off()
