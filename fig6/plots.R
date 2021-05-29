@@ -57,7 +57,7 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
   lines(out1$time_new, out1$VFA_conc, col = "red", lty=2)
   lines(out3$time_new, out3$VFA_conc, col = "red", lty=1)
   mtext('c', 3, line = 1)
-  mtext(expression('Temperature'~(degree*C)~'or VFA conc.'~(k['COD']~kg['slurry'])), 4, line = 2, cex = 0.6)
+  mtext(expression('Temperature'~(degree*C)~'or VFA conc.'~(g['COD']~kg['slurry'])), 4, line = 2, cex = 0.6)
 
 
   # part d
@@ -73,6 +73,6 @@ tiff('../fig_output/Fig6.tiff', width = 6, height = 6, pointsize = 9, units = 'i
   axis(4)
   lines(out2$time_new, out2$VFA_conc, col = "red", lty=1)
   mtext('d', 3, line = 1)
-  mtext(expression('Temperature'~(degree*C)~'or VFA conc.'~(k['COD']~kg['slurry'])), 4, line = 2, cex = 0.6)
+  mtext(expression('Temperature'~(degree*C)~'or VFA conc.'~(g['COD']~kg['slurry'])), 4, line = 2, cex = 0.6)
 
 dev.off()
